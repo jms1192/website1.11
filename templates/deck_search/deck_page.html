@@ -1,0 +1,22 @@
+{% extends 'home_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <h1>deck hash tags</h1>
+    {% for i in tags%}
+    <a href="http://localhost:8000/deck_search/deck_display/{{ i }}">{{ i }}</a>
+    {% endfor %}
+
+    <h1>Deck</h1>
+
+    <a href='http://localhost:8000/deck_search/sample_hand/{{ id1 }}'>Sample Hand</a>
+
+
+    {% for x,y in cards %}
+    <h2>{{ y }}X {{ x.name }}</h2>
+    {% endfor %}
+     
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+<html>
+<head></head>
+<body>
+    <nav>
+        <a href="/logout/">logout</a>
+        <button id="card_search" onclick = "location.href='http://localhost:8000/card_search/search/'" >Search Cards</button>
+        <button id='home' onclick="location.href='http://localhost:8000/user_social/user_home'">Account Home</button>
+        <button id="deack_search" onclick = "location.href='http://localhost:8000/deck_search/search_deck/'" >Search Decks</button> 
+        <button id="Social" onclick = "location.href='http://localhost:8000/user_social/social_home'" >Social</button>
+    </nav>
+    {% block content %} {% endblock %}
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'loged_in_base.html' %}
+
+{% block content %}
+<h1> Kind of deck</h1>
+
+<button onclick = "location.href='http://localhost:8000/deck_search/new_deck_name/Constructed'">Constructed</button>
+<button onclick = "location.href='http://localhost:8000/deck_search/new_deck_name/Commander'">Commander</button>
+<button onclick = "location.href='http://localhost:8000/deck_search/new_deck_name/Collection'">Collection</button>
+
+{% endblock %}

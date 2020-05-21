@@ -1,0 +1,12 @@
+{% extends 'home_base.html' %}
+
+{% block content %}
+<h1>sample hand</h1>
+
+{% for i in hand %}
+<h2>{{ i.name }}</h2>
+{% endfor %}
+
+<a href='http://localhost:8000/deck_search/sample_hand/{{ id }}'>New Hand</a>
+
+{% endblock %}

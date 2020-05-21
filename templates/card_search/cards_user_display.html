@@ -1,0 +1,14 @@
+{% extends 'loged_in_base.html' %}
+
+{% block title %}Search{% endblock %}
+
+
+{% block content %}
+
+<h1>display</h1>
+
+{% for i in search_list %}
+ <a href="http://localhost:8000/card_search/card_page/{{ i.id }}">{{ i.name }}</a>
+{% endfor %} 
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'loged_in_base.html' %}
+
+{% block content %}
+
+<h1>Sample hand</h1>
+
+{% for i in hand %}
+<h2>{{ i.name }}</h2>
+{% endfor %}
+
+
+<a href='http://localhost:8000/deck_search/sample_hand/{{ id }}'>New Hand</a>
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'loged_in_base.html' %}
+
+{% block content %}
+<h1>Publish Deck</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Publish</button>
+</form>
+
+
+
+
+{% endblock %}

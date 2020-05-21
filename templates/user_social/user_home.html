@@ -1,0 +1,21 @@
+{% extends 'loged_in_base.html' %}
+
+{% block content %}
+
+{{ user.email }}
+
+<h1>Decks</h1>
+{% for i in deck_list %}
+ <a href='/deck_search/deck_page/{{ i.id }}'>{{ i.deck_name }}</a>
+{% endfor %} 
+
+
+
+{% csrf_token %}
+{{ form.as_p }}
+<div>
+    <button id="new deck" onclick = "location.href='http://localhost:8000/deck_search/new_deck/'">New Deck</button>
+</div>
+
+
+{% endblock %}

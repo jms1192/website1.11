@@ -1,0 +1,14 @@
+{% extends 'loged_in_base.html' %}
+
+{% block content %}
+
+<h1>Card search</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">search</button>
+</form>
+
+<h2> {{ name }} </h2>
+{% endblock %}

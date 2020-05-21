@@ -1,0 +1,21 @@
+
+{% extends 'loged_in_base.html' %}
+
+{% block title %}card page{% endblock %}
+
+
+{% block content %}
+
+<h1>card page</h1>
+
+<p>{{ card.name }}</p>
+<p>{{ card.rulestext }}</p>
+
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add to deck</button>
+</form>
+
+{% endblock %}

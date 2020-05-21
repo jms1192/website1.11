@@ -1,0 +1,14 @@
+{% extends 'loged_in_base.html' %}
+
+
+{% block content %}
+<h1>{{ user.user }} {{ kind }}</h1>
+
+{% for i in name_list %}
+<div>
+ <a href="http://localhost:8000/user_social/other_player_profile/{{ i.id }}">{{ i.user }}</a>
+</div>
+{% endfor %} 
+
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'loged_in_base.html' %}
+
+
+{% block content %}
+<h1>{{ user.user }}</h1>
+<a href="http://localhost:8000/user_social/follow_page/{{ user.id }}/following">following: {{ people_following }}</a>
+<a href="http://localhost:8000/user_social/follow_page/{{ user.id }}/followers">followers: {{ followers }}</a>
+
+
+<h2>Decks</h2>
+{% for i in decks1 %}
+<div>
+ <a href="http://localhost:8000/deck_search/deck_page/{{ i.id }}">{{ i.deck_name }}</a>
+</div>
+{% endfor %} 
+
+
+{% endblock %}
