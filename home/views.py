@@ -3,6 +3,7 @@ from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.shortcuts import HttpResponseRedirect
+from .models import UserProfile
 
 # Create your views here.
 def home(request):
@@ -23,7 +24,26 @@ def create_account(request):
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password_first")
         User.objects.create_user(username, email, password)
+
+        new_user = (User.objects.all())
+        new_user = new_user[(len(new_user)-1)]
+        new_user2 = UserProfile(user = new_user)
+        new_user2.save()
+        return render(request, "welcome_templates/new_user.html", {'username': username, 'email':email})
+
     return render(request, "welcome_templates/create_account.html", context=context)
+
+def user_conformation(request, id):
+    
+
+    return render(request, "welcome_templates/new_user.html", {'username': username, 'email':email})
+
+
+
+
+
+
+
 
 
 def login_page(request):
