@@ -17,9 +17,9 @@ def search(request):
                 return render(request, 'card_search/cards_display.html', {'search_list': search_list})
             #change this to a redirect to the display page 
 
-    
         
     form = card_searchform()
+
     if request.user.is_authenticated == True:
         return render(request, 'card_search/user_card_search.html', {'form': form})
     else:
