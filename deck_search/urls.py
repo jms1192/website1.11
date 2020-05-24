@@ -10,7 +10,8 @@ urlpatterns = [
     path('delete_deck/<id>', views.delete_deck),
     path('publish_deck/<id>', views.publish_deck_v),
     path('sample_hand/<id>', views.sample_hand),
-    path('deck_display/<hash_tags>', views.deck_display)
+    path('deck_display/<hash_tags>', views.deck_display),
+    path('popular_decks/', views.popular_decks)
 
     
 ]

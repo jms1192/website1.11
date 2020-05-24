@@ -181,3 +181,13 @@ def sample_hand(request, id):
             return render(request,'deck_search/sample_hand.html', {'hand': hand2, 'id':id})
     else:
         return redirect('/deck_search/deck_page/' + str(id))
+
+
+def popular_decks(request):
+    deck_list = decks.objects.filter(deck_publish=True)
+    deck_list = deck_list.extra( order_by = ['-deck_copies'])
+    
+    if request.user.is_active == True:
+        return render(request, 'deck_search/user_popular_decks.html', {'deck_list': deck_list})
+    else:
+        return render(request, 'deck_search/popular_decks.html', {'deck_list': deck_list})
