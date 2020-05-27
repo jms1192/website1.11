@@ -3,16 +3,34 @@ from .forms import card_searchform, search_function
 from home.models import cards
 from home.models import UserProfile, decks, cards_in_deck
 from django import forms
+import math
+from django.http import HttpRequest
 
-
+#this function takes that data that the users seached and covertit into a page/url where all the cards that fit there critera are shown 
 def search(request):
     if request.method == 'POST':
         form = card_searchform(request.POST)
         if form.is_valid(): 
             
             search_list = search_function(form)
+
+            send_list2 = []
+            form_list = ['cmc','cmc_op', 'color', 'cost', 'Keyword', 'legal', 'name', 'power', 'price', 'rules_text', 'sub_type', 'super_type', 'toughness']
+            for i in form_list:
+                check2 = form.cleaned_data[i]
+                send_list2.append([i,check2])
+            
+            
+            
+            check = request.POST
+            send_list = []
+            for k, v in check.items():
+                if not (v == '' or v == 'all' or k == 'csrfmiddlewaretoken'):
+                    send_list.append((k,v))
+
+            
             if request.user.is_authenticated == True:
-                return render(request, 'card_search/cards_user_display.html', {'search_list': search_list})
+                return render(request, 'card_search/cards_user_display.html', {'search_list': search_list1})
             else:
                 return render(request, 'card_search/cards_display.html', {'search_list': search_list})
             #change this to a redirect to the display page 
@@ -26,6 +44,23 @@ def search(request):
         return render(request, 'card_search/card_search.html', {'form': form})
 
 
+def card_search_display(search_list):
+    if len(search_list) > 60:
+        number_pages = math.ceil((len(search_list))/60)
+        page_list = []
+        for p in range(number_pages):
+            if p == math.ceil((len(search_list))/60):
+                page_cards = search_list[((p-1) * 60):]
+            else:
+                page_cards = search_list[((p-1) * 60):(p * 60)]
+            page_list.append(page_cards)
+    else:
+        page_list = search_list
+
+
+
+
+#this takes all the information of a card and isplays it on one page 
 def card_page(request, card_id):
 
     card = cards.objects.filter(id=card_id)[0]

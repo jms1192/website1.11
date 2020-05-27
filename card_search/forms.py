@@ -2,7 +2,7 @@ from django import forms
 from home.models import cards
 
 
-
+#this whole file deals with user input in the card search page and retuens a list of cards that fit that spesfic criterial 
 
 COLOR_CHOICES = [
     ('R', 'Red'),
@@ -182,10 +182,8 @@ def search_function(form):
         for i in color:
             card_list = card_list.filter(colors__in=i)
 
-
-
     
-    #color needs work!!!!!!!!
+    #color needs work!!!!!!!! only searches for cards that have all colors searched
 
 
     return(card_list)
