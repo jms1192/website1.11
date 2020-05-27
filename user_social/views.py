@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from home.models import decks, cards_in_deck, UserProfile, cards, follow_modle
 from django.contrib.auth.models import User
 from .forms import follow_form
-
+#this gets the data for the home page of the user 
 def user_home(request):
     #deck_list
     current_user = UserProfile.objects.filter(user = request.user)
@@ -13,7 +13,7 @@ def user_home(request):
     #add_deck eveythin below needs work that is the problem
     return render(request, 'user_social/user_home.html', {'deck_list': deck_list})
 
-
+#this loads the socail page for a user 
 def social_home(request):
     name_list = []
     current_user = (UserProfile.objects.filter(user=request.user))[0]
@@ -57,7 +57,7 @@ def social_home(request):
 
     return render(request, 'user_social/social_home.html', {'decklist': deck_list2, 'following': following, 'followers': followers, 'user': current_user, 'form': form}) 
 
-
+#this loads a page of all the followers or the people following a user 
 def follow_list(request, id, kind):
         
     if kind == 'followers':
@@ -77,7 +77,7 @@ def follow_list(request, id, kind):
     
     return render(request,'user_social/follow_list.html', {'name_list': name_list, 'user': current_user, 'kind': kind})
 
-
+#this shows the profile page of other users 
 def other_player_profile(request, id):
 
     user = (UserProfile.objects.filter(id =id))[0]
