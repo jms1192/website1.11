@@ -65,6 +65,8 @@ class decks(models.Model):
 class cards_in_deck(models.Model):
     deck = models.ForeignKey(decks, on_delete=models.CASCADE)
     card = models.ForeignKey(cards, on_delete=models.CASCADE)
+    is_commander = models.BooleanField(default=False)
+    is_sideboard = models.BooleanField(default=False)
 
 class follow_modle(models.Model):
     follower =  models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='follower')

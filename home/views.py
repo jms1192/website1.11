@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth import authenticate, login, logout, get_user_model, authenticate
 from django.shortcuts import HttpResponseRedirect
 from .models import UserProfile
+from django.http import HttpResponse
+
+
+
 
 # Create your views here.
 def home(request):
@@ -33,17 +37,6 @@ def create_account(request):
 
     return render(request, "welcome_templates/create_account.html", context=context)
 
-def user_conformation(request, id):
-    
-
-    return render(request, "welcome_templates/new_user.html", {'username': username, 'email':email})
-
-
-
-
-
-
-
 
 
 def login_page(request):
@@ -70,3 +63,5 @@ def logout_page(request):
     
     logout(request)
     return redirect('/')
+
+
