@@ -4,7 +4,7 @@ from .forms import add_deck, publish_deck, deck_searchform, add_card_to_deck
 import collections
 import random
 
-# Create your views here.
+#this loads the data for the deck search page 
 def search_deck(request):
 
     if request.method == 'POST':
@@ -24,7 +24,7 @@ def search_deck(request):
         return render(request, 'deck_search/search.html', {'form':form})
 
 
-
+#this loads the data for the results of the search page 
 def deck_display(request, hash_tags):
     deck_list = decks.objects.filter(deck_publish=True)
 
@@ -39,6 +39,7 @@ def deck_display(request, hash_tags):
         return render(request,'deck_search/deck_display.html', {'deck_list': deck_list})
 
 
+#this loads the data for a deck pages on if the users is loged in and what kind of deck it is 
 def deck_page(request,id):
     deck = decks.objects.filter(id = id)
     card2 = cards_in_deck.objects.filter(deck = deck[0]).exclude(is_commander = True).exclude(is_sideboard=True)
@@ -129,6 +130,7 @@ def deck_page(request,id):
 
 #under this are deck page functions
 
+#this function will make a new copie of a published deck that sombody does not have and put it in their decks 
 def copy_deck(request,id):
 
     deck = decks.objects.filter(id = id)
@@ -162,11 +164,13 @@ def copy_deck(request,id):
 
     return redirect('http://localhost:8000/user_social/user_home')
 
-
+#this will load the new deck page where you can choose what kind of deck you want 
 def new_deck(request):
 
     return render(request, 'deck_search/new_deck.html')
 
+
+#this will load the page where you can name your deck and acutaly creates the deck when you name it 
 def new_deck_name(request,type1):
 
     if request.method == 'POST':
@@ -190,7 +194,7 @@ def new_deck_name(request,type1):
 
     return render(request, 'deck_search/new_deck_name.html', {'form': form})
 
-
+#this function lets somebody delete their own deck 
 def delete_deck(request, id):
 
     decks.objects.filter(id=id).delete()
@@ -198,7 +202,7 @@ def delete_deck(request, id):
     return redirect('http://localhost:8000/user_social/user_home')
 
 
-
+#this function lets somebody publish their own deck 
 def publish_deck_v(request, id):
 
     if request.method == 'POST':
@@ -219,7 +223,7 @@ def publish_deck_v(request, id):
 
     return render(request, 'deck_search/publish_deck.html', {'form': form}) 
 
-
+#this gives sombody a sample hand of thier deck 
 def sample_hand(request, id):
     deck = (decks.objects.filter(id=id))[0]
     cards = list(cards_in_deck.objects.filter(deck=deck))
@@ -236,7 +240,7 @@ def sample_hand(request, id):
     else:
         return redirect('/deck_search/deck_page/' + str(id))
 
-
+#this show the published decks with the most copies 
 def popular_decks(request):
     deck_list = decks.objects.filter(deck_publish=True)
     deck_list = deck_list.extra( order_by = ['-deck_copies'])
@@ -246,7 +250,7 @@ def popular_decks(request):
     else:
         return render(request, 'deck_search/popular_decks.html', {'deck_list': deck_list})
 
-
+#this moves a card in your deck to the commander spot of your deck 
 def make_commander(request,id_c,id_d):
     deck = decks.objects.filter(id=id_d)[0]
     card = cards.objects.filter(id=id_c)[0]
@@ -264,6 +268,8 @@ def make_commander(request,id_c,id_d):
 
     return redirect(('http://localhost:8000/deck_search/deck_page/' + str(id_d)))
 
+
+#this moves a card in your deck to the sideboard spot of your deck 
 def add_sideboard(request,id_c,id_d):
 
     deck = decks.objects.filter(id=id_d)[0]
@@ -273,6 +279,7 @@ def add_sideboard(request,id_c,id_d):
     moved_to_sideboard.save(update_fields=['is_sideboard'])
     return redirect(('http://localhost:8000/deck_search/deck_page/' + str(id_d)))
 
+#this lets you move cards back to your deck from the sideboard 
 def from_sideboard_to_deck(request,id_c,id_d):
     deck = decks.objects.filter(id=id_d)[0]
     card = cards.objects.filter(id=id_c)[0]
@@ -281,7 +288,7 @@ def from_sideboard_to_deck(request,id_c,id_d):
     moved_to_deck.save(update_fields=['is_sideboard'])
     return redirect(('http://localhost:8000/deck_search/deck_page/' + str(id_d)))
 
-
+#this removes a crard from your deck 
 def remonve_card_from_deck(request,id_c,id_d):
     deck = decks.objects.filter(id=id_d)[0]
     card = cards.objects.filter(id=id_c)[0] 
