@@ -13,10 +13,36 @@
     <a href='http://localhost:8000/deck_search/sample_hand/{{ id1 }}'>Sample Hand</a>
 
 
-    {% for x,y in cards %}
-    <h2>{{ y }}X {{ x.name }}</h2>
+
+
+    {% if not commander == 1 %}
+    <h2>Commander</h2>
+    <h3>{{ commander.name }}</h3>
+    {% endif %}
+
+
+
+
+    {% for w,o,q in cards %}
+    <h2>{{ w }}s ({{ o }})</h2>
+
+    {% for x,y in q %}
+    <h3>{{ y }}x {{ x.name }}</h3>
     {% endfor %}
-     
+
+    {% endfor %}
 
 
-{% endblock %}
+    {% if not sideboard == 1 %}
+    
+    <h2>Side board</h2>
+    
+    {% for x,y in sideboard %}
+    <h3>{{ y }}x {{ x.name }}</h3>
+    <button id="{{ x.name }}" onclick = "location.href='http://localhost:8000/deck_search/delete_card/{{ x.id }}/{{ id1 }}'" >X</button>
+    {% endfor %}
+    
+    {% endif %}
+
+
+    {% endblock %}
