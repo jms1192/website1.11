@@ -18,6 +18,8 @@ def about(request):
 
     return render(request, 'welcome_templates/about.html')
 
+
+#this is where the user data ented on the create acount creates a new user in the databace 
 def create_account(request):
     form = RegisterForm(request.POST or None)
     context = {
@@ -38,7 +40,7 @@ def create_account(request):
     return render(request, "welcome_templates/create_account.html", context=context)
 
 
-
+#this is where users log in 
 def login_page(request):
     form = LoginForm(request.POST or None)
     context = {
@@ -58,7 +60,7 @@ def login_page(request):
 
     return render(request, "welcome_templates/login.html", context=context)
 
-
+#this logs users out 
 def logout_page(request):
     
     logout(request)

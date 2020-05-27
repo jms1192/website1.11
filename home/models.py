@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django_mysql.models import ListCharField
 from django.db.models import CharField, DecimalField, BooleanField
 
+
+#this file holds all of the tables in the databace
+
 class cards(models.Model):
 
     colorIdentity = ListCharField(base_field=CharField(max_length=250), size=7, max_length=20000)
