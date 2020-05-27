@@ -40,16 +40,18 @@ def card_page(request, card_id):
     
         class card_add(forms.Form):
             deck = forms.ChoiceField(required= True, widget=forms.RadioSelect, choices=DECKS)
+            quantity = forms.DecimalField()
 
         if request.method == 'POST':
             form = card_add(request.POST)
             if form.is_valid(): 
                 deck_id = form.cleaned_data.get("deck")
                 user_deck = (decks.objects.filter(id=deck_id))[0]
+                quantity = int(form.cleaned_data.get("quantity"))
 
-
-            new_add = cards_in_deck(deck=user_deck, card=card)
-            new_add.save()
+            for i in range(quantity):
+                new_add = cards_in_deck(deck=user_deck, card=card)
+                new_add.save()
 
 
         form = card_add()
