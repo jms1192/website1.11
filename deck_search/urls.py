@@ -11,7 +11,12 @@ urlpatterns = [
     path('publish_deck/<id>', views.publish_deck_v),
     path('sample_hand/<id>', views.sample_hand),
     path('deck_display/<hash_tags>', views.deck_display),
-    path('popular_decks/', views.popular_decks)
+    path('popular_decks/', views.popular_decks),
+    path('make_commander/<id_c>/<id_d>', views.make_commander),
+    path('add_sideboard/<id_c>/<id_d>', views.add_sideboard),
+    path('delete_card/<id_c>/<id_d>', views.remonve_card_from_deck),
+    path('move_from_sideboard/<id_c>/<id_d>', views.from_sideboard_to_deck)
+    
 
     
 ]

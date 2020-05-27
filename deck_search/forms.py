@@ -11,3 +11,7 @@ class publish_deck(forms.Form):
 
 class deck_searchform(forms.Form):
     hash_tags = forms.CharField(widget=forms.TextInput)
+
+class add_card_to_deck(forms.Form):
+    card_name = forms.CharField()
+    quantity = forms.IntegerField()
