@@ -1,0 +1,17 @@
+{% extends 'loged_in_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content2 %}
+  <h1>search decks</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">search</button>
+</form>
+
+
+<button id="popular_decks" onclick = "location.href='http://localhost:8000/deck_search/popular_decks/'" >Popular Decks</button>
+
+{% endblock %}

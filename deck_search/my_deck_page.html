@@ -1,0 +1,94 @@
+{% extends 'loged_in_base.html' %}
+
+{% block content2 %}
+<h1> Deck Page !</h1>
+<a href="http://localhost:8000/deck_search/deck_analysis/{{ id1 }}">Deck Analysis</a>
+
+<a href='/deck_search/delete_deck/{{ id1 }}'> Delete deck</a>
+
+<a href='http://localhost:8000/deck_search/publish_deck/{{ id1 }}'>Publish Deck</a>
+
+<a href='http://localhost:8000/deck_search/sample_hand/{{ id1 }}'>Sample Hand</a>
+
+
+
+
+
+{% if not commander == 1 %}
+<div>   
+    <h1>Change commander</h1>
+    {% for q,w,e in cards %}
+    {% for a,b in e %}
+    <button id="{{ a.name }}" onclick = "location.href='http://localhost:8000/deck_search/make_commander/{{ a.id }}/{{ id1 }}'" >{{ a.name }}</button>
+    {% endfor %}
+    {% endfor %}
+    </select>
+</div>
+
+<h2>Commander</h2>
+<h3>{{ commander.name }}</h3>
+{% endif %}
+
+
+
+
+{% for w,o,q in cards %}
+<h2>{{ w }}s ({{ o }})</h2>
+    
+{% for x,y in q %}
+<h3>{{ y }}x {{ x.name }}</h3>
+<button id="{{ a.name }}" onclick = "location.href='http://localhost:8000/deck_search/delete_card/{{ x.id }}/{{ id1 }}'" >X</button>
+{% endfor %}
+{% endfor %}
+
+
+
+
+
+{% if not sideboard == 1 %}
+<div>   
+    <h1>Move to Sideboard</h1>
+    {% for q,w,e in cards %}
+    {% for a,b in e %}
+    <button id="{{ a.name }}" onclick = "location.href='http://localhost:8000/deck_search/add_sideboard/{{ a.id }}/{{ id1 }}'" >{{ a.name }}</button>
+    {% endfor %}
+    {% endfor %}
+    </select>
+</div>
+<div>
+    <h1>move from Sideboard</h1>
+    
+    {% for x,y in sideboard %}
+    <button id="{{ x.name }}" onclick = "location.href='http://localhost:8000/deck_search/move_from_sideboard/{{ x.id }}/{{ id1 }}'" >{{ x.name }}</button>
+    {% endfor %}
+        
+
+</div>
+
+
+
+<h2>Side board</h2>
+    
+{% for x,y in sideboard %}
+<h3>{{ y }}x {{ x.name }}</h3>
+<button id="{{ x.name }}" onclick = "location.href='http://localhost:8000/deck_search/delete_card/{{ x.id }}/{{ id1 }}'" >X</button>
+{% endfor %}
+    
+{% endif %}
+
+
+
+<h1>Add Card to deck</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Add to deck</button>
+</form>
+
+
+
+{% endblock %}
+
+
+

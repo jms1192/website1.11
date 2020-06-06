@@ -1,0 +1,38 @@
+{% extends 'home_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content2 %}
+<h1>Deck Analysis</h1>  
+
+<h2>Mana Bace</h2>
+<h3>Lands recomended {{ mana_needed }}</h3>
+{% if not white_recomended == 0%}
+<h3>white Sources recomended {{ white_recomended }}</h3>
+{% endif %}
+
+{% if not blue_recomended == 0%}
+<h3>blue Sources recomended {{ blue_recomended }}</h3>
+{% endif %}
+
+{% if not green_recomended == 0%}
+<h3>green Sources recomended {{ green_recomended }}</h3>
+{% endif %}
+
+{% if not black_recomended == 0%}
+<h3>black Sources recomended {{ black_recomended }}</h3>
+{% endif %}
+
+{% if not red_recomended == 0%}
+<h3>red Sources recomended {{ red_recomended }}</h3>
+{% endif %}
+
+{% if not colorless_recomended == 0%}
+<h3>white Sources recomended {{ colorless_recomended }}</h3>
+{% endif %}
+
+<h3>Average Mana Cost {{ average_mana_cost }}</h3>
+
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'home_base.html' %}
+
+{% block title %}Popular Decks{% endblock %}
+
+{% block content2 %}
+    <h1>Popular Decks</h1>
+    {% for i in deck_list%}
+    <div>
+    <a href="http://localhost:8000/deck_search/deck_page/{{ i.id }}">{{ i.deck_name }}</a>
+    </div>  
+    {% endfor %}     
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'home_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content2 %}
+  <h1>result</h1>
+
+  <h3>{{ deck_list|length }} results </h3>
+  <h4>page{{ page }}/{{ number_pages }}</h4>
+
+
+  {% for i in deck_list %}
+  <a href='/deck_search/deck_page/{{ i.id }}'>{{ i.deck_name }}</a>
+  {% endfor %}  
+
+  {% if next_page == True %}
+
+  <a href='http://localhost:8000/deck_search/deck_display/{{ page|add:"1" }}/{{ hash_tags }}'>Next Page</a>
+  
+  {% endif %}
+  
+  {% if previous_page == True %}
+  
+  <a href='http://localhost:8000/deck_search/deck_display/{{ page|add:"-1" }}/{{ hash_tags }}'>Next Page</a>
+  
+  {% endif %}
+{% endblock %}
+
+

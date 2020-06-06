@@ -1,0 +1,46 @@
+{% extends 'loged_in_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content2 %}
+    <a href="http://localhost:8000/deck_search/deck_analysis/{{ id1 }}">Deck Analysis</a>
+    <h1>deck hash tags</h1>
+    {% for i in tags%}
+    <a href="http://localhost:8000/deck_search/deck_display/1/{{ i }}">{{ i }}</a>
+    {% endfor %}
+
+
+
+    <h1>Deck</h1>
+
+    <a href='http://localhost:8000/deck_search/sample_hand/{{ id1 }}'>Sample Hand</a>
+    <a href='http://localhost:8000/deck_search/copy_deck/{{ id1 }}'>Copy Deck</a>
+
+    
+
+
+     
+    {% for w,o,q in cards %}
+    <h2>{{ w }}s ({{ o }})</h2>
+    
+    {% for x,y in q %}
+    <h3>{{ y }}x {{ x.name }}</h3>
+    {% endfor %}
+    
+    {% endfor %}
+
+
+    {% if not sideboard == 1 %}
+    
+    <h2>Side board</h2>
+    
+    {% for x,y in sideboard %}
+    <h3>{{ y }}x {{ x.name }}</h3>
+    {% endfor %}
+    
+    {% endif %}
+
+
+
+
+{% endblock %}
