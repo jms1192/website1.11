@@ -1,0 +1,34 @@
+{% extends 'shop_base.html' %}
+
+{% block content2 %}
+
+    <h1>{{ store.store_name }}</h1>
+    <h1>{{ store.zip_code }}</h1>
+    <h1>{{ store.link_store_website }}</h1>
+    <h1>{{ store.blurb_about_store }}</h1>
+
+    <button id="post_event" onclick = "location.href='http://localhost:8000/store/post_event/{{ s_id }}'" >Post Event</button>
+    <button id="post_promotion" onclick = "location.href='http://localhost:8000/store/post_promotion/{{ s_id }}'" >Post Promotion</button>
+    <button id="change_info" onclick = "location.href='http://localhost:8000/store/change_info/{{ s_id }}'" >Change Information</button>
+    
+    <h1>Most Recent Posts</h1>
+    {% for i in events_posted %}
+    <div>
+        <h2>{{ i.event_title }}</h2>
+        <h4>{{ i.event_time }}</h4>
+        <h4>{{ i.event_format }}</h4>
+        <p>{{ i.event_discription }}</p>
+
+    </div>
+    {% endfor %}
+
+
+    {% for i in promotions_posted %}
+    <div>
+        <h2>{{ i.promotion_title }}</h2>
+        <p>{{ i.promotion_discription }}</p>
+
+    </div>
+    {% endfor %}
+
+{% endblock %}

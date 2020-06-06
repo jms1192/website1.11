@@ -1,0 +1,15 @@
+{% extends 'loged_in_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content2 %}
+  <h1>Shop Search</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
+{% endblock %}

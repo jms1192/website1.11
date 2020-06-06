@@ -1,0 +1,15 @@
+{% extends 'home_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content2 %}
+  <h1>Register store</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+
+{% endblock %}

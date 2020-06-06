@@ -1,0 +1,27 @@
+{% extends 'loged_in_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content2 %}
+<h1>{{ shop.store_name }}</h1>
+<p>Adress: {{ shop.adress }}</p>
+<p>Zip Code: {{ shop.zip_code }}</p>
+<p>link: {{ shop.link_store_website }}</p>
+
+
+<h2>Events</h2>
+{% for i in event_list %}
+<h4>{{  i.event_title }}</h4>
+<p>{{ i.event_discription }}</p>
+{% endfor %}
+
+
+<h2>Promotions</h2>
+{% for i in promotion_list %}
+<h4>{{  i.promotion_title }}</h4>
+<p>{{ i.promotion_discription }}</p>
+{% endfor %}
+
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'loged_in_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content2 %}
+  <h1>stores following</h1>
+
+{% for i in shop_list %}
+<div>
+    <h4> {{ i.store_name }}  </h4>
+    <a href='http://localhost:8000/store/shop_page/{{ i.id }}'>More Info</a>
+</div>
+{% endfor %}
+
+{% endblock %}

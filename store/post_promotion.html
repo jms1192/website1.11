@@ -1,0 +1,15 @@
+{% extends 'shop_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content2 %}
+  <h1>Post Promotion</h1>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Post</button>
+</form>
+
+
+{% endblock %}
