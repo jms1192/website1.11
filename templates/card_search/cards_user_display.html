@@ -3,12 +3,39 @@
 {% block title %}Search{% endblock %}
 
 
-{% block content %}
+{% block content2 %}
 
 <h1>display</h1>
+<h3>{{ search_list|length }} results </h3>
+<h4>page{{ page }}/{{ number_pages }}</h4>
 
 {% for i in search_list %}
- <a href="http://localhost:8000/card_search/card_page/{{ i.id }}">{{ i.name }}</a>
+<div>
+    <a href="http://localhost:8000/card_search/card_page/{{ i.id }}">{{ i.name }}</a>
+</div>
 {% endfor %} 
+
+
+
+{% if next_page == True %}
+
+<a href='http://localhost:8000/card_search/card_display/{{ page|add:"1" }}/{{ send_list }}'>Next Page</a>
+
+{% endif %}
+
+{% if previous_page == True %}
+
+<a href='http://localhost:8000/card_search/card_display/{{ page|add:"-1" }}/{{ send_list }}''>Next Page</a>
+
+{% endif %}
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
