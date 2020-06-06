@@ -67,24 +67,25 @@ class card_searchform(forms.Form):
 
 
 
-def search_function(form):
-    name = form.cleaned_data.get('name')
-    cost = form.cleaned_data.get('cost')
-    cmc = form.cleaned_data.get('cmc')
-    cmc_op = form.cleaned_data.get('cmc_op')
-    color = form.cleaned_data.get('color')
-    color_op = form.cleaned_data.get('color_op')
-    card_type = form.cleaned_data.get('card_type')
-    sub_type = form.cleaned_data.get('sub_type')
-    super_type = form.cleaned_data.get('super_type')
-    rules_text = form.cleaned_data.get('rules_text')
-    power = form.cleaned_data.get('power')
-    power_op = form.cleaned_data.get('power_op')
-    toughness = form.cleaned_data.get('toughness')
-    toughness_op = form.cleaned_data.get('toughness_op')
-    legal1 = form.cleaned_data.get('legal')
-    price = form.cleaned_data.get('price')
-    price_op = form.cleaned_data.get('price_op')
+def search_function(send_list):
+    cost = send_list[3]
+    name = send_list[5]
+    cmc = send_list[0]
+    cmc_op = send_list[1]
+    color = send_list[2]
+    #color_op = form.cleaned_data.get('color_op')
+    card_type = send_list[14]
+    sub_type = send_list[10]
+    super_type = send_list[11]
+    rules_text = send_list[9]
+    power = send_list[6]
+    power_op = send_list[7]
+    toughness = send_list[12]
+    toughness_op = send_list[13]
+    legal1 = send_list[4]
+    price = send_list[8]
+    #price_op = form.cleaned_data.get('price_op')
+
 
 
     card_list = cards.objects.all()
@@ -182,8 +183,6 @@ def search_function(form):
         for i in color:
             card_list = card_list.filter(colors__in=i)
 
-    
     #color needs work!!!!!!!! only searches for cards that have all colors searched
-
 
     return(card_list)
